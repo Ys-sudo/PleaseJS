@@ -466,22 +466,7 @@
 			switch( scheme_options.scheme_type.toLowerCase() ){
 				case 'monochromatic':
 				case 'mono':
-					for ( i = 1; i <= 2; i++ ) {
-
-						adjusted = clone( HSV );
-
-						adjusted_s = adjusted.s + ( 0.1 * i );
-						adjusted_s = clamp( adjusted_s, 0, 1 );
-
-						adjusted_v = adjusted.v + ( 0.1 * i );
-						adjusted_v = clamp( adjusted_v, 0, 1 );
-
-						adjusted.s = adjusted_s;
-						adjusted.v = adjusted_v;
-
-						scheme.push( adjusted );
-					}
-					for ( i = 1; i <= 2; i++ ) {
+					for ( i = 1; i <= 4; i++ ) {
 
 						adjusted = clone( HSV );
 
@@ -496,6 +481,7 @@
 
 						scheme.push( adjusted );
 					}
+					
 				break;
 				case 'complementary':
 				case 'complement':
@@ -520,21 +506,23 @@
 				case 'double':
 					//first basic complement
 					adjusted = clone( HSV );
-					adjusted.h = ( adjusted.h + 180 ) % 360;
+					adjusted.h = ( adjusted.h + 90 ) % 360;
 					scheme.push( adjusted );
 					//then offset
-					adjusted.h = ( adjusted.h + 30 ) % 360;
-					secondary = clone( adjusted );
-					scheme.push( adjusted );
-					//complement offset
+         				adjusted = clone( HSV );
 					adjusted.h = ( adjusted.h + 180 ) % 360;
+          				scheme.push( adjusted );
+					secondary = clone( adjusted );
+					
+					//complement offset
+					adjusted.h = ( adjusted.h + 90 ) % 360;
 					scheme.push( secondary );
 				break;
 				case 'analogous':
 				case 'ana':
 					for ( i = 1; i <= 5; i++ ) {
 						adjusted = clone( HSV );
-						adjusted.h = ( adjusted.h + ( 20 * i ) ) % 360;
+						adjusted.h = ( adjusted.h + ( 33 * i ) ) % 360;
 						scheme.push( adjusted );
 					}
 				break;
