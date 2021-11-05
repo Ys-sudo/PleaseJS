@@ -508,10 +508,16 @@
 					adjusted = clone( HSV );
 					adjusted.h = ( adjusted.h + 90 ) % 360;
 					scheme.push( adjusted );
-					//then offset
+					//then double offset
+
+         	adjusted = clone( HSV );
+					adjusted.h = ( adjusted.h + 180 ) % 360;
+          scheme.push( adjusted );
+          
           adjusted = clone( HSV );
 					adjusted.h = ( adjusted.h + 180 ) % 360;
           scheme.push( adjusted );
+          
 					secondary = clone( adjusted );
 					
 					//complement offset
